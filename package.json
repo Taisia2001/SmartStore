@@ -1,0 +1,19 @@
+{
+  "name": "nit4",
+  "version": "1.0.0",
+  "description": "package for shop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Taisia2001/nit4Shop.git"
+  },
+  "author": "Taisiia Shutiak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Taisia2001/nit4Shop/issues"
+  },
+  "homepage": "https://github.com/Taisia2001/nit4Shop#readme"
+}
