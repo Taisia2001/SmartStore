@@ -24,6 +24,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs/img" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -32,6 +33,10 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\nit4\docs\img" />
+      <recent name="D:\nit4\docs\js" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\nit4\docs" />
     </key>
@@ -58,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1573388943396</updated>
-      <workItem from="1573388944509" duration="3891000" />
+      <workItem from="1573388944509" duration="35471000" />
     </task>
     <servers />
   </component>
