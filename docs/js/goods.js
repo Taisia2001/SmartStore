@@ -11,15 +11,52 @@ $('document').ready(function (){
         data=request.response;
         checkCart();
         changeCart(0);
+        $('.bFoot').html('<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary" onclick="createPost()">Buy</button>');
     }
 
-        initNav();
+    initNav();
     loadGoods('https://nit.tron.net.ua/api/product/list','All Products');
 
 
 
 
+
 });
+function createPost() {
+if (cartGoods==0){
+    alert('Error, your cart is empty');
+}else{
+    $.post('https://nit.tron.net.ua/api/order/add', {
+            //products = '1:5, 2:2, 4:2'
+            token: 'x8H_i721iqlF4YP2BTAU',
+            name: document.getElementById('name').value,
+            phone: document.getElementById('phone').value,
+            async: false,
+            email: document.getElementById('email').value,
+            products:cart,
+
+        },
+        function (data, textStatus, jqXHR) {
+        if (data.status=="error"){
+
+            var errors="";
+            for(var er in data.errors){
+                errors+=data.errors[er]+"\n";
+            }
+            alert(errors);
+        }else{
+            document.getElementById('name').value="";
+            document.getElementById('phone').value="";
+            document.getElementById('email').value="";
+            cart={};
+            cartGoods=0;
+            localStorage.setItem('cart', JSON.stringify(cart) );
+            if(!alert('Order successfully accepted')){window.location.reload();}
+
+        }
+
+        });
+}}
 function initNav(){
     var requestURL = 'https://nit.tron.net.ua/api/category/list';
     var request = new XMLHttpRequest();
@@ -55,12 +92,12 @@ function loadGoods(url,header){
     var out='<h2 class="content_header">'+header+'</h2><div class="row ">';
     request.onload = function() {
         var products=request.response;
-       products.forEach(function (item) {
-                out+='<div class="books col-lg-3"> <img src="'+item.image_url+'" data-toggle="modal" data-target="#productModal" onclick="prodModal(this)"  alt="img" data-art="'+item.id+'"><br>';
-                if(item.special_price!=null){out+='<span class="price last_price">'+item.price+'₴</span>'
+        products.forEach(function (item) {
+            out+='<div class="books col-lg-3"> <img src="'+item.image_url+'" data-toggle="modal" data-target="#productModal" onclick="prodModal(this)"  alt="img" data-art="'+item.id+'"><br>';
+            if(item.special_price!=null){out+='<span class="price last_price">'+item.price+'₴</span>'
                 out+='<span class="price">'+item.special_price+'₴</span><br>';
-                }else{out+='<span class="price">'+item.price+'₴</span><br>';}
-                out+='<a onclick="prodModal(this)" data-toggle="modal" data-target="#productModal" data-art="'+item.id+'">'+item.name+'</a> <br><button class="buy_button" onclick="addToCart(this)" data-art="'+item.id+'" data-toggle="modal" data-target="#cartModal" >Buy</button></div>';
+            }else{out+='<span class="price">'+item.price+'₴</span><br>';}
+            out+='<a onclick="prodModal(this)" data-toggle="modal" data-target="#productModal" data-art="'+item.id+'">'+item.name+'</a> <br><button class="buy_button" onclick="addToCart(this)" data-art="'+item.id+'" data-toggle="modal" data-target="#cartModal" >Buy</button></div>';
 
 
         });
@@ -82,7 +119,7 @@ function prodModal(item) {
     }
     inner += '<br><p class="description">' + el.description + '</p>';
     $('#product-content').html(inner);
-inner='<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#cartModal" onclick="addToCart(this)" data-art="'+el.id+'" >Buy</button>'
+    inner='<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#cartModal" onclick="addToCart(this)" data-art="'+el.id+'" >Buy</button>'
     $('.prod').html(inner);
 }
 function addToCart(item) {
@@ -116,9 +153,12 @@ function changeCart( num){
         }
         totalS='Total: '+total+'₴';
     }
+    var buttons='<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>';
+    if(cartGoods!=0){ buttons+='<button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#buyModal">Buy</button>'}
     $('#cart_number').html(cartGoods);
     $('#cart_total').html(totalS);
     $('#cart-content').html(out);
+    $('#cart-footer').html(buttons);
     $('button.delete').on('click',deleteFromCart);
     $('button.plus_button').on('click',plusBooks);
     $('button.minus_button').on('click',minusBooks);
@@ -147,9 +187,9 @@ function deleteFromCart() {
     changeCart(0);
 
 }
-function checkCart(){
-    if ( localStorage.getItem('cart') != null) {
-        cart = JSON.parse (localStorage.getItem('cart'));
-        for(var i in cart)cartGoods+=cart[i];
+function checkCart() {
+    if (localStorage.getItem('cart') != null) {
+        cart = JSON.parse(localStorage.getItem('cart'));
+        for (var i in cart) cartGoods += cart[i];
     }
 }

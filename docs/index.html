@@ -37,10 +37,7 @@
                 </div>
             </div>
             <div id="cart_total"></div>
-            <div class="modal-footer">
-
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#buyModal">Buy</button>
+            <div class="modal-footer" id="cart-footer">
             </div>
         </div>
     </div>
@@ -76,17 +73,15 @@
             <div class="modal-body" >
                 <div id="buy-content">
                     <span>Name:  </span>
-                    <input type="text"><br><br>
+                    <input id="name" type="text"><br><br>
                     <span>Phone: </span>
-                    <input type="text"><br><br>
+                    <input id="phone" type="number"><br><br>
                     <span>E-mail:  </span>
-                    <input type="text">
-
+                    <input id="email" type="text">
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" >Buy</button>
+            <div class="modal-footer bFoot">
+
             </div>
         </div>
     </div>
@@ -101,7 +96,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="./js/goods.js"></script>
 <script src="./js/main.js"></script>
+<script src="./js/goods.js"></script>
 </body>
 </html>
