@@ -27,8 +27,7 @@ if (cartGoods==0){
     alert('Error, your cart is empty');
 }else{
     $.post('https://nit.tron.net.ua/api/order/add', {
-            //products = '1:5, 2:2, 4:2'
-            token: 'x8H_i721iqlF4YP2BTAU',
+            token: 'ugZL5zIjR4XQGrlJdwAg',
             name: document.getElementById('name').value,
             phone: document.getElementById('phone').value,
             async: false,
